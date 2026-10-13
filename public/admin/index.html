@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGPC · Panel administrativo</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="/admin/"><span>SGPC</span> Panel<span class="largo">&nbsp;administrativo</span></a>
+    <nav>
+      <a href="/">Ver tienda</a>
+      <span id="usuarioActual" class="oculto"></span>
+      <button class="btn btn-claro btn-peq oculto" id="btnSalir" type="button">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <!-- Inicio de sesión (RF-01) -->
+  <section class="login" id="vistaLogin">
+    <h1 class="titulo">Iniciar sesión</h1>
+    <p class="subtitulo">Acceso exclusivo para administradores.</p>
+    <div class="mensaje" id="msgLogin"></div>
+    <form id="formLogin" novalidate>
+      <div class="campo"><label for="correo">Correo</label><input id="correo" type="email" autocomplete="username" required></div>
+      <div class="campo"><label for="clave">Contraseña</label><input id="clave" type="password" autocomplete="current-password" required></div>
+      <div class="acciones"><button class="btn" type="submit">Ingresar</button></div>
+    </form>
+  </section>
+
+  <main class="contenedor oculto" id="vistaPanel">
+    <div class="tarjetas-resumen" id="resumen"></div>
+
+    <div class="tabs">
+      <button class="tab activa" data-tab="pedidos" type="button">Pedidos</button>
+      <button class="tab" data-tab="productos" type="button">Productos</button>
+    </div>
+
+    <!-- Pedidos (RF-06) -->
+    <section id="tab-pedidos">
+      <div class="filtros">
+        <div class="chips" id="filtroEstado"></div>
+        <button class="btn btn-claro btn-peq" id="recargarPedidos" type="button">Actualizar</button>
+      </div>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>N.°</th><th>Fecha</th><th>Cliente</th><th>Productos</th><th>Total</th><th>Estado</th><th>Cambiar estado</th></tr></thead>
+          <tbody id="tablaPedidos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Productos (RF-02) -->
+    <section id="tab-productos" class="oculto">
+      <div class="filtros">
+        <button class="btn" id="nuevoProducto" type="button">+ Nuevo producto</button>
+        <button class="btn btn-claro" id="nuevaCategoria" type="button">+ Nueva categoría</button>
+      </div>
+      <div class="tabla-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>Producto</th><th>Categoría</th><th>Precio</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tablaProductos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Formulario de producto -->
+  <div class="modal" id="modalProducto">
+    <div class="caja">
+      <h2 id="tituloProducto">Nuevo producto</h2>
+      <div class="mensaje" id="msgProducto"></div>
+      <form id="formProducto" novalidate>
+        <input type="hidden" id="pId">
+        <div class="campo"><label for="pNombre">Nombre</label><input id="pNombre" maxlength="150"></div>
+        <div class="campo"><label for="pCategoria">Categoría</label><select id="pCategoria"></select></div>
+        <div class="campo"><label for="pPrecio">Precio (COP)</label><input id="pPrecio" type="number" min="0" step="100"></div>
+        <div class="campo"><label for="pDescripcion">Descripción</label><textarea id="pDescripcion" rows="3"></textarea></div>
+        <div class="campo"><label for="pImagen">URL de la imagen (opcional)</label><input id="pImagen" type="url" placeholder="https://..."></div>
+        <div class="acciones">
+          <button class="btn btn-claro" type="button" id="cancelarProducto">Cancelar</button>
+          <button class="btn" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Formulario de categoría -->
+  <div class="modal" id="modalCategoria">
+    <div class="caja">
+      <h2>Nueva categoría</h2>
+      <div class="mensaje" id="msgCategoria"></div>
+      <form id="formCategoria" novalidate>
+        <div class="campo"><label for="cNombre">Nombre</label><input id="cNombre" maxlength="100"></div>
+        <div class="campo"><label for="cDescripcion">Descripción</label><input id="cDescripcion" maxlength="255"></div>
+        <div class="acciones">
+          <button class="btn btn-claro" type="button" id="cancelarCategoria">Cancelar</button>
+          <button class="btn" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="pie-pagina">SGPC · Panel administrativo</footer>
+  <script src="/js/comun.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

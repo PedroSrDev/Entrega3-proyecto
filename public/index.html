@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SGPC · Catálogo en línea</title>
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+  <header class="barra">
+    <a class="marca" href="/"><span>SGPC</span> Tienda<span class="largo">&nbsp;en línea</span></a>
+    <nav>
+      <a href="/admin/">Administración</a>
+      <button class="btn btn-acento" id="btnCarrito" type="button">
+        Carrito <span class="contador-carrito" id="contador">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <h1 class="titulo">Catálogo de productos</h1>
+    <p class="subtitulo">Elige tus productos, agrégalos al carrito y registra tu pedido. Pago contra entrega.</p>
+
+    <div class="filtros">
+      <input type="search" id="buscar" placeholder="Buscar producto..." aria-label="Buscar producto">
+      <div class="chips" id="categorias"></div>
+    </div>
+
+    <div class="grid" id="catalogo"></div>
+    <p class="vacio oculto" id="sinProductos">No hay productos que coincidan con tu búsqueda.</p>
+  </main>
+
+  <!-- Carrito lateral (RF-04) -->
+  <div class="velo" id="velo"></div>
+  <aside class="carrito" id="carrito" aria-label="Carrito de compras">
+    <header>
+      <h2>Tu carrito</h2>
+      <button class="btn btn-claro btn-peq" id="cerrarCarrito" type="button">Cerrar</button>
+    </header>
+    <div class="items" id="itemsCarrito"></div>
+    <footer>
+      <div class="total"><span>Total</span><span id="totalCarrito">$ 0</span></div>
+      <button class="btn" id="btnPedido" type="button">Registrar pedido</button>
+    </footer>
+  </aside>
+
+  <!-- Formulario de pedido (RF-05) -->
+  <div class="modal" id="modalPedido">
+    <div class="caja">
+      <h2>Datos de entrega</h2>
+      <div class="mensaje" id="msgPedido"></div>
+      <form id="formPedido" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" maxlength="150" autocomplete="name" required>
+        </div>
+        <div class="campo">
+          <label for="direccion">Dirección de entrega</label>
+          <input id="direccion" maxlength="255" autocomplete="street-address" required>
+        </div>
+        <div class="campo">
+          <label for="telefono">Teléfono</label>
+          <input id="telefono" maxlength="30" inputmode="tel" autocomplete="tel" required>
+        </div>
+        <p class="subtitulo" id="resumenPedido"></p>
+        <div class="acciones">
+          <button class="btn btn-claro" type="button" id="cancelarPedido">Cancelar</button>
+          <button class="btn" type="submit" id="confirmarPedido">Confirmar pedido</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Confirmación -->
+  <div class="modal" id="modalOk">
+    <div class="caja">
+      <h2>¡Pedido registrado!</h2>
+      <p id="textoOk"></p>
+      <div class="acciones"><button class="btn" type="button" id="cerrarOk">Seguir comprando</button></div>
+    </div>
+  </div>
+
+  <footer class="pie-pagina">SGPC · Sistema de Gestión de Pedidos y Catálogo en Línea · Proyecto académico</footer>
+  <script src="/js/comun.js"></script>
+  <script src="/js/tienda.js"></script>
+</body>
+</html>

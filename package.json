@@ -1,0 +1,20 @@
+{
+  "name": "sgpc",
+  "version": "1.0.0",
+  "description": "SGPC - Sistema de Gestión de Pedidos y Catálogo en Línea",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.22.3",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}
